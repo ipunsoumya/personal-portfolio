@@ -5,6 +5,48 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 const Education = () => {
+  const [education, setEducation] = useState([]);
+  const [certifications, setCertifications] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch education and certifications from API
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [educationResponse, certificationsResponse] = await Promise.all([
+          axios.get(`${API}/education`),
+          axios.get(`${API}/certifications`)
+        ]);
+        
+        if (educationResponse.data.success) {
+          setEducation(educationResponse.data.data);
+        }
+        
+        if (certificationsResponse.data.success) {
+          setCertifications(certificationsResponse.data.data);
+        }
+      } catch (error) {
+        console.error('Error fetching education data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <section id="education" className="py-20">
+        <div className="container">
+          <div className="grid-container text-center">
+            <div className="title-big">LOADING EDUCATION...</div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="education" className="py-20">
       <div className="container">
