@@ -209,7 +209,19 @@ const twinStyles = `
   }
 
   /* Hide Emergent badge that gets injected */
-  #emergent-badge {
+  #emergent-badge,
+  [id*="emergent"],
+  [class*="emergent"],
+  a[href*="emergent"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+
+  /* Hide any elements containing "Made with Emergent" text */
+  *:has-text("Made with Emergent"),
+  *[title*="Made with Emergent"],
+  *[alt*="Made with Emergent"] {
     display: none !important;
   }
 
