@@ -3,10 +3,11 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 18
-      python: 3.11
+      nodejs: 21
+      python: 3.13
     commands:
       - echo Installing dependencies...
+      - pip install --upgrade pip setuptools wheel
       
   pre_build:
     commands:
@@ -14,7 +15,7 @@ phases:
       - python --version
       - echo Pre-build phase started on `date`
       - cd frontend && npm install --force
-      - cd ../backend && pip install -r requirements.txt
+      - cd ../backend && pip install --no-cache-dir -r requirements.txt
       
   build:
     commands:
