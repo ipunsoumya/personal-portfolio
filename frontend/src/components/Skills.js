@@ -6,6 +6,8 @@ const API = `${BACKEND_URL}/api`;
 
 const Skills = () => {
   const [activeCategory, setActiveCategory] = useState(0);
+  const [skills, setSkills] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const SkillBar = ({ skill }) => (
     <div className="mb-6">
