@@ -181,7 +181,7 @@ const Contact = () => {
                 <h4 className="label mb-4">QUICK LINKS</h4>
                 <div className="space-y-3">
                   <a
-                    href={personalInfo.resumeUrl}
+                    href={personalInfo?.resumeUrl || '/resume.pdf'}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block text-body hover:opacity-70 transition-opacity"
