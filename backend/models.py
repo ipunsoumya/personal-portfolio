@@ -186,8 +186,6 @@ class ContactMessageCreate(BaseModel):
     message: str
 
 # Response Models
-from typing import Union, Any
-
 class ApiResponse(BaseModel):
     success: bool
     data: Optional[Union[dict, list, Any]] = None
