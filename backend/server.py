@@ -1,56 +1,190 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI, APIRouter, HTTPException
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
-from motor.motor_asyncio import AsyncIOMotorClient
+from database import DatabaseManager
+from models import *
 import os
 import logging
 from pathlib import Path
-from pydantic import BaseModel, Field
-from typing import List
-import uuid
-from datetime import datetime
-
+from typing import Optional
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
 # MongoDB connection
 mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+db_name = os.environ['DB_NAME']
+db_manager = DatabaseManager(mongo_url, db_name)
 
 # Create the main app without a prefix
-app = FastAPI()
+app = FastAPI(title="Portfolio API", description="Personal Portfolio Backend API")
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
 
-
-# Define Models
-class StatusCheck(BaseModel):
-    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    client_name: str
-    timestamp: datetime = Field(default_factory=datetime.utcnow)
-
-class StatusCheckCreate(BaseModel):
-    client_name: str
-
-# Add your routes to the router instead of directly to app
+# Health check endpoint
 @api_router.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": "Portfolio API is running"}
 
-@api_router.post("/status", response_model=StatusCheck)
-async def create_status_check(input: StatusCheckCreate):
-    status_dict = input.dict()
-    status_obj = StatusCheck(**status_dict)
-    _ = await db.status_checks.insert_one(status_obj.dict())
-    return status_obj
+# Personal Info Endpoints
+@api_router.get("/personal-info", response_model=ApiResponse)
+async def get_personal_info():
+    try:
+        personal_info = await db_manager.get_personal_info()
+        if not personal_info:
+            raise HTTPException(status_code=404, detail="Personal info not found")
+        
+        return ApiResponse(
+            success=True,
+            data=personal_info.dict(),
+            message="Personal info retrieved successfully"
+        )
+    except Exception as e:
+        logging.error(f"Error fetching personal info: {str(e)}")
+        return ApiResponse(
+            success=False,
+            error="Failed to fetch personal info"
+        )
 
-@api_router.get("/status", response_model=List[StatusCheck])
-async def get_status_checks():
-    status_checks = await db.status_checks.find().to_list(1000)
-    return [StatusCheck(**status_check) for status_check in status_checks]
+# About Endpoints
+@api_router.get("/about", response_model=ApiResponse)
+async def get_about():
+    try:
+        about = await db_manager.get_about()
+        if not about:
+            raise HTTPException(status_code=404, detail="About info not found")
+        
+        return ApiResponse(
+            success=True,
+            data=about.dict(),
+            message="About info retrieved successfully"
+        )
+    except Exception as e:
+        logging.error(f"Error fetching about info: {str(e)}")
+        return ApiResponse(
+            success=False,
+            error="Failed to fetch about info"
+        )
+
+# Skills Endpoints
+@api_router.get("/skills", response_model=ApiResponse)
+async def get_skills():
+    try:
+        skills = await db_manager.get_skills()
+        return ApiResponse(
+            success=True,
+            data=[skill.dict() for skill in skills],
+            message="Skills retrieved successfully"
+        )
+    except Exception as e:
+        logging.error(f"Error fetching skills: {str(e)}")
+        return ApiResponse(
+            success=False,
+            error="Failed to fetch skills"
+        )
+
+# Projects Endpoints
+@api_router.get("/projects", response_model=ApiResponse)
+async def get_projects(category: Optional[str] = None):
+    try:
+        projects = await db_manager.get_projects(category)
+        return ApiResponse(
+            success=True,
+            data=[project.dict() for project in projects],
+            message="Projects retrieved successfully"
+        )
+    except Exception as e:
+        logging.error(f"Error fetching projects: {str(e)}")
+        return ApiResponse(
+            success=False,
+            error="Failed to fetch projects"
+        )
+
+# Experience Endpoints
+@api_router.get("/experience", response_model=ApiResponse)
+async def get_experience():
+    try:
+        experience = await db_manager.get_experience()
+        return ApiResponse(
+            success=True,
+            data=[exp.dict() for exp in experience],
+            message="Experience retrieved successfully"
+        )
+    except Exception as e:
+        logging.error(f"Error fetching experience: {str(e)}")
+        return ApiResponse(
+            success=False,
+            error="Failed to fetch experience"
+        )
+
+# Education Endpoints
+@api_router.get("/education", response_model=ApiResponse)
+async def get_education():
+    try:
+        education = await db_manager.get_education()
+        return ApiResponse(
+            success=True,
+            data=[edu.dict() for edu in education],
+            message="Education retrieved successfully"
+        )
+    except Exception as e:
+        logging.error(f"Error fetching education: {str(e)}")
+        return ApiResponse(
+            success=False,
+            error="Failed to fetch education"
+        )
+
+# Certifications Endpoints
+@api_router.get("/certifications", response_model=ApiResponse)
+async def get_certifications():
+    try:
+        certifications = await db_manager.get_certifications()
+        return ApiResponse(
+            success=True,
+            data=[cert.dict() for cert in certifications],
+            message="Certifications retrieved successfully"
+        )
+    except Exception as e:
+        logging.error(f"Error fetching certifications: {str(e)}")
+        return ApiResponse(
+            success=False,
+            error="Failed to fetch certifications"
+        )
+
+# Contact Endpoints
+@api_router.post("/contact", response_model=ApiResponse)
+async def submit_contact_message(message: ContactMessageCreate):
+    try:
+        contact_message = await db_manager.create_contact_message(message)
+        return ApiResponse(
+            success=True,
+            data=contact_message.dict(),
+            message="Message sent successfully! Thank you for reaching out."
+        )
+    except Exception as e:
+        logging.error(f"Error creating contact message: {str(e)}")
+        return ApiResponse(
+            success=False,
+            error="Failed to send message. Please try again."
+        )
+
+# Admin endpoint to view contact messages (for future use)
+@api_router.get("/admin/messages", response_model=ApiResponse)
+async def get_contact_messages():
+    try:
+        messages = await db_manager.get_contact_messages()
+        return ApiResponse(
+            success=True,
+            data=[msg.dict() for msg in messages],
+            message="Contact messages retrieved successfully"
+        )
+    except Exception as e:
+        logging.error(f"Error fetching contact messages: {str(e)}")
+        return ApiResponse(
+            success=False,
+            error="Failed to fetch contact messages"
+        )
 
 # Include the router in the main app
 app.include_router(api_router)
@@ -58,7 +192,7 @@ app.include_router(api_router)
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
+    allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -72,4 +206,4 @@ logger = logging.getLogger(__name__)
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
-    client.close()
+    await db_manager.close()
