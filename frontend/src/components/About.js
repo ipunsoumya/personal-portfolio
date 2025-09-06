@@ -101,7 +101,7 @@ const About = () => {
               <div className="card">
                 <h4 className="label mb-4">PERSONAL INTERESTS</h4>
                 <div className="space-y-3">
-                  {aboutMe.personalInterests.map((interest, index) => (
+                  {aboutMe?.personalInterests?.map((interest, index) => (
                     <div key={index} className="flex items-center">
                       <span 
                         className="w-1 h-6 mr-3"
@@ -109,7 +109,7 @@ const About = () => {
                       />
                       <span className="text-body">{interest}</span>
                     </div>
-                  ))}
+                  )) || <div>Loading interests...</div>}
                 </div>
               </div>
 
