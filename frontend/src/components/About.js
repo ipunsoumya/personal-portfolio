@@ -81,7 +81,7 @@ const About = () => {
               <div>
                 <h4 className="label mb-4">KEY ACHIEVEMENTS</h4>
                 <ul className="space-y-3">
-                  {aboutMe.highlights.map((highlight, index) => (
+                  {aboutMe?.highlights?.map((highlight, index) => (
                     <li key={index} className="flex items-start">
                       <span 
                         className="w-2 h-2 mt-2 mr-3 flex-shrink-0"
@@ -89,7 +89,7 @@ const About = () => {
                       />
                       <span className="text-body">{highlight}</span>
                     </li>
-                  ))}
+                  )) || <li>Loading achievements...</li>}
                 </ul>
               </div>
             </div>
