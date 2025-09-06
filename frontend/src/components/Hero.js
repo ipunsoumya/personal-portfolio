@@ -21,6 +21,32 @@ const Hero = () => {
     'Backend Systems Architect'
   ];
 
+  // Fetch data from API
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [personalResponse, aboutResponse] = await Promise.all([
+          axios.get(`${API}/personal-info`),
+          axios.get(`${API}/about`)
+        ]);
+        
+        if (personalResponse.data.success) {
+          setPersonalInfo(personalResponse.data.data);
+        }
+        
+        if (aboutResponse.data.success) {
+          setAboutMe(aboutResponse.data.data);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchData();
+  }, []);
+
   useEffect(() => {
     const typeSpeed = isDeleting ? 50 : 100;
     const currentFullTitle = titles[titleIndex];
