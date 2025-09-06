@@ -64,6 +64,18 @@ const Skills = () => {
     </div>
   );
 
+  if (loading) {
+    return (
+      <section id="skills" className="py-20">
+        <div className="container">
+          <div className="grid-container text-center">
+            <div className="title-big">LOADING SKILLS...</div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="skills" className="py-20">
       <div className="container">
