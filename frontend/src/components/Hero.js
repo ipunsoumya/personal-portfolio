@@ -135,7 +135,7 @@ const Hero = () => {
             {/* Social Links */}
             <div className="flex justify-center items-center space-x-6 mt-8">
               <a 
-                href={personalInfo.socialLinks.linkedin} 
+                href={personalInfo?.socialLinks?.linkedin} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="label-small hover:opacity-70 transition-opacity"
@@ -143,7 +143,7 @@ const Hero = () => {
                 LinkedIn
               </a>
               <a 
-                href={personalInfo.socialLinks.github} 
+                href={personalInfo?.socialLinks?.github} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="label-small hover:opacity-70 transition-opacity"
@@ -151,7 +151,7 @@ const Hero = () => {
                 GitHub
               </a>
               <a 
-                href={personalInfo.socialLinks.twitter} 
+                href={personalInfo?.socialLinks?.twitter} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="label-small hover:opacity-70 transition-opacity"
