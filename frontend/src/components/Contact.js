@@ -34,22 +34,45 @@ const Contact = () => {
     }));
   };
 
+  // Fetch personal info from API
+  useEffect(() => {
+    const fetchPersonalInfo = async () => {
+      try {
+        const response = await axios.get(`${API}/personal-info`);
+        if (response.data.success) {
+          setPersonalInfo(response.data.data);
+        }
+      } catch (error) {
+        console.error('Error fetching personal info:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchPersonalInfo();
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission (replace with actual API call)
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      setSubmitStatus('success');
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        subject: '',
-        message: ''
-      });
+      const response = await axios.post(`${API}/contact`, formData);
+      
+      if (response.data.success) {
+        setSubmitStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          subject: '',
+          message: ''
+        });
+      } else {
+        setSubmitStatus('error');
+      }
     } catch (error) {
+      console.error('Error submitting contact form:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
