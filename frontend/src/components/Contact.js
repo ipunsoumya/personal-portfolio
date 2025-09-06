@@ -14,6 +14,17 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [personalInfo, setPersonalInfo] = useState(null);
+  const [loading, setLoading] = useState(true);
+  
+  // Mock contact info for now (can be moved to API later)
+  const contactInfo = {
+    email: "contact@example.com",
+    phone: "+91-XXXXX-XXXXX",
+    location: "Pune, India",
+    availability: "Open to new opportunities",
+    responseTime: "Usually responds within 24 hours"
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
