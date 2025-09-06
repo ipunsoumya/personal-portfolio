@@ -112,7 +112,7 @@ const Hero = () => {
             {/* Brief Description */}
             <div className="max-w-4xl mx-auto">
               <p className="text-body opacity-80">
-                {aboutMe.summary}
+                {aboutMe?.summary || 'Loading...'}
               </p>
             </div>
 
