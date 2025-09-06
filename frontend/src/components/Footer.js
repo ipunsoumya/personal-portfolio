@@ -6,6 +6,31 @@ const API = `${BACKEND_URL}/api`;
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const [personalInfo, setPersonalInfo] = useState(null);
+  
+  // Mock contact info for now (can be moved to API later)
+  const contactInfo = {
+    email: "contact@example.com",
+    phone: "+91-XXXXX-XXXXX",
+    location: "Pune, India",
+    availability: "Open to new opportunities"
+  };
+
+  // Fetch personal info from API
+  useEffect(() => {
+    const fetchPersonalInfo = async () => {
+      try {
+        const response = await axios.get(`${API}/personal-info`);
+        if (response.data.success) {
+          setPersonalInfo(response.data.data);
+        }
+      } catch (error) {
+        console.error('Error fetching personal info:', error);
+      }
+    };
+    
+    fetchPersonalInfo();
+  }, []);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
