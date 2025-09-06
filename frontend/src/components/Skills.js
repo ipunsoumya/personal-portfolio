@@ -120,7 +120,7 @@ const Skills = () => {
             {/* Skills Display */}
             <div className="lg:col-span-3">
               <div className="card">
-                <h3 className="label mb-8">{skills[activeCategory].category}</h3>
+                <h3 className="label mb-8">{skills[activeCategory]?.category || 'Skills'}</h3>
                 
                 {/* Skills Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
