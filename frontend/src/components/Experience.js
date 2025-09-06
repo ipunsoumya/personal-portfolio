@@ -31,6 +31,18 @@ const Experience = () => {
     setExpandedId(expandedId === id ? null : id);
   };
 
+  if (loading) {
+    return (
+      <section id="experience" className="py-20">
+        <div className="container">
+          <div className="grid-container text-center">
+            <div className="title-big">LOADING EXPERIENCE...</div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="experience" className="py-20">
       <div className="container">
