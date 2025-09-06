@@ -5,6 +5,48 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 const About = () => {
+  const [aboutMe, setAboutMe] = useState(null);
+  const [personalInfo, setPersonalInfo] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch data from API
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [aboutResponse, personalResponse] = await Promise.all([
+          axios.get(`${API}/about`),
+          axios.get(`${API}/personal-info`)
+        ]);
+        
+        if (aboutResponse.data.success) {
+          setAboutMe(aboutResponse.data.data);
+        }
+        
+        if (personalResponse.data.success) {
+          setPersonalInfo(personalResponse.data.data);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <section id="about" className="py-20">
+        <div className="container">
+          <div className="grid-container text-center">
+            <div className="title-big">LOADING ABOUT...</div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="about" className="py-20">
       <div className="container">
