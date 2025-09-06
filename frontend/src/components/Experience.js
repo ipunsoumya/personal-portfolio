@@ -6,6 +6,8 @@ const API = `${BACKEND_URL}/api`;
 
 const Experience = () => {
   const [expandedId, setExpandedId] = useState(null);
+  const [experience, setExperience] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const toggleExpanded = (id) => {
     setExpandedId(expandedId === id ? null : id);
