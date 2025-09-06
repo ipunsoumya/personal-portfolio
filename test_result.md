@@ -381,7 +381,16 @@ metadata:
 
 test_plan:
   current_focus:
-    - "All backend API endpoints tested and verified"
+    - "Header Navigation & Routing"
+    - "Hero Section Dynamic Content"
+    - "About Section API Integration"
+    - "Skills Section Interactive Features"
+    - "Projects Section Filtering & Modals"
+    - "Experience Section Timeline"
+    - "Education & Certifications Display"
+    - "Contact Form Functionality"
+    - "Footer Navigation & Links"
+    - "Responsive Design & Mobile View"
   stuck_tasks: []
   test_all: true
   test_priority: "high_first"
