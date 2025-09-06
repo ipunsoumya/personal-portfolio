@@ -134,19 +134,21 @@ const Skills = () => {
                   <div className="grid grid-cols-3 gap-4 text-center">
                     <div>
                       <div className="text-regular" style={{ color: 'var(--accent-primary)' }}>
-                        {skills[activeCategory].items.length}
+                        {skills[activeCategory]?.items?.length || 0}
                       </div>
                       <div className="label-small mt-1">TECHNOLOGIES</div>
                     </div>
                     <div>
                       <div className="text-regular" style={{ color: 'var(--accent-primary)' }}>
-                        {Math.round(skills[activeCategory].items.reduce((acc, skill) => acc + skill.proficiency, 0) / skills[activeCategory].items.length)}%
+                        {skills[activeCategory]?.items?.length ? 
+                          Math.round(skills[activeCategory].items.reduce((acc, skill) => acc + skill.proficiency, 0) / skills[activeCategory].items.length) : 0}%
                       </div>
                       <div className="label-small mt-1">AVG PROFICIENCY</div>
                     </div>
                     <div>
                       <div className="text-regular" style={{ color: 'var(--accent-primary)' }}>
-                        {Math.round(skills[activeCategory].items.reduce((acc, skill) => acc + skill.years, 0) / skills[activeCategory].items.length * 10) / 10}
+                        {skills[activeCategory]?.items?.length ? 
+                          Math.round(skills[activeCategory].items.reduce((acc, skill) => acc + skill.years, 0) / skills[activeCategory].items.length * 10) / 10 : 0}
                       </div>
                       <div className="label-small mt-1">AVG EXPERIENCE</div>
                     </div>
