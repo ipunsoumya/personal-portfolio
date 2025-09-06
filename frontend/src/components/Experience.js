@@ -9,6 +9,24 @@ const Experience = () => {
   const [experience, setExperience] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Fetch experience from API
+  useEffect(() => {
+    const fetchExperience = async () => {
+      try {
+        const response = await axios.get(`${API}/experience`);
+        if (response.data.success) {
+          setExperience(response.data.data);
+        }
+      } catch (error) {
+        console.error('Error fetching experience:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchExperience();
+  }, []);
+
   const toggleExpanded = (id) => {
     setExpandedId(expandedId === id ? null : id);
   };
