@@ -67,10 +67,10 @@ const About = () => {
                   Professional Journey
                 </h3>
                 <p className="text-body leading-relaxed mb-6">
-                  {aboutMe.summary}
+                  {aboutMe?.summary || 'Loading...'}
                 </p>
                 <p className="text-body leading-relaxed">
-                  Currently based in {personalInfo.location}, I'm passionate about building 
+                  Currently based in {personalInfo?.location || 'India'}, I'm passionate about building 
                   scalable solutions that handle real-world complexity. My experience spans 
                   from high-frequency trading systems to compliance platforms, always focusing 
                   on performance, reliability, and clean architecture.
