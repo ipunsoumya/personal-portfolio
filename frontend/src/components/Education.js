@@ -1,5 +1,8 @@
-import React from 'react';
-import { education, certifications } from '../data/mock';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
 
 const Education = () => {
   return (
