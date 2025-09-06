@@ -9,6 +9,24 @@ const Skills = () => {
   const [skills, setSkills] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Fetch skills from API
+  useEffect(() => {
+    const fetchSkills = async () => {
+      try {
+        const response = await axios.get(`${API}/skills`);
+        if (response.data.success) {
+          setSkills(response.data.data);
+        }
+      } catch (error) {
+        console.error('Error fetching skills:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchSkills();
+  }, []);
+
   const SkillBar = ({ skill }) => (
     <div className="mb-6">
       <div className="flex justify-between items-center mb-2">
