@@ -6,6 +6,23 @@ const API = `${BACKEND_URL}/api`;
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [personalInfo, setPersonalInfo] = useState(null);
+
+  // Fetch personal info from API
+  useEffect(() => {
+    const fetchPersonalInfo = async () => {
+      try {
+        const response = await axios.get(`${API}/personal-info`);
+        if (response.data.success) {
+          setPersonalInfo(response.data.data);
+        }
+      } catch (error) {
+        console.error('Error fetching personal info:', error);
+      }
+    };
+    
+    fetchPersonalInfo();
+  }, []);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
