@@ -13,18 +13,18 @@ import Footer from './components/Footer';
 
 // TWEN Design System Styles
 const twinStyles = `
-  /* TWEN Color System */
+  /* TWEN Color System - Dark Theme */
   :root {
-    --color-background: #F2F2F2;
-    --bg-white: #FFFFFF;
-    --text-primary: #232323;
-    --text-secondary: rgba(35, 35, 35, 0.7);
-    --border-color: #232323;
-    --border-light: rgba(35, 35, 35, 0.1);
+    --color-background: #0F0F10;
+    --bg-white: #1A1A1B;
+    --text-primary: #FFFFFF;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --border-color: #FFFFFF;
+    --border-light: rgba(255, 255, 255, 0.1);
     --accent-primary: #38FF62;
     --accent-hover: #2AE052;
     --accent-active: #1DC943;
-    --accent-foreground: #232323;
+    --accent-foreground: #0F0F10;
     --grid-unit: 47.6px;
   }
 
