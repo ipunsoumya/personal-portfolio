@@ -141,7 +141,7 @@ const twinStyles = `
   }
 
   .btn-primary:hover {
-    background: rgba(35, 35, 35, 0.05);
+    background: rgba(255, 255, 255, 0.05);
   }
 
   .btn-accent {
