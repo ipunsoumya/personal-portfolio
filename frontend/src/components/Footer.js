@@ -53,9 +53,9 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { name: 'LinkedIn', url: personalInfo.socialLinks.linkedin },
-    { name: 'GitHub', url: personalInfo.socialLinks.github },
-    { name: 'Twitter', url: personalInfo.socialLinks.twitter }
+    { name: 'LinkedIn', url: personalInfo?.socialLinks?.linkedin || '#' },
+    { name: 'GitHub', url: personalInfo?.socialLinks?.github || '#' },
+    { name: 'Twitter', url: personalInfo?.socialLinks?.twitter || '#' }
   ];
 
   return (
