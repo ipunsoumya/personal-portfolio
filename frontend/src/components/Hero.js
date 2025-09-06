@@ -76,6 +76,18 @@ const Hero = () => {
     }
   };
 
+  if (loading) {
+    return (
+      <section id="hero" className="min-h-screen flex items-center justify-center relative">
+        <div className="container">
+          <div className="grid-container text-center">
+            <div className="hero-title">LOADING...</div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative">
       <div className="container">
