@@ -96,10 +96,10 @@ const Hero = () => {
           <div className="space-y-8">
             {/* Name/Title */}
             <div>
-              <h1 className="hero-title mb-4">
-                PORTFOLIO
+              <h1 className="hero-title mb-4" style={{ fontSize: 'clamp(40px, 10vw, 160px)' }}>
+                SOUMYAJEET PATRA
               </h1>
-              <div className="text-big" style={{ minHeight: '120px' }}>
+              <div className="text-big" style={{ minHeight: '80px' }}>
                 {currentTitle}
                 <span className="inline-block w-1 h-12 ml-2" style={{ 
                   background: 'var(--accent-primary)', 
@@ -133,7 +133,7 @@ const Hero = () => {
             </div>
 
             {/* Social Links */}
-            <div className="flex justify-center items-center space-x-6 mt-8">
+            <div className="flex justify-center items-center space-x-6 mt-8 mb-16 relative z-10">
               <a 
                 href={personalInfo?.socialLinks?.linkedin} 
                 target="_blank" 
@@ -162,7 +162,7 @@ const Hero = () => {
           </div>
 
           {/* Scroll Indicator */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-0">
             <div 
               className="w-px h-20 relative cursor-pointer"
               onClick={() => scrollToSection('about')}

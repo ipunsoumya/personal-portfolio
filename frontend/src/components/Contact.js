@@ -15,16 +15,8 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
   const [personalInfo, setPersonalInfo] = useState(null);
+  const [contactInfo, setContactInfo] = useState(null);
   const [loading, setLoading] = useState(true);
-  
-  // Mock contact info for now (can be moved to API later)
-  const contactInfo = {
-    email: "contact@example.com",
-    phone: "+91-XXXXX-XXXXX",
-    location: "Pune, India",
-    availability: "Open to new opportunities",
-    responseTime: "Usually responds within 24 hours"
-  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -34,22 +26,39 @@ const Contact = () => {
     }));
   };
 
-  // Fetch personal info from API
+  // Fetch data from API
   useEffect(() => {
-    const fetchPersonalInfo = async () => {
+    const fetchData = async () => {
       try {
         const response = await axios.get(`${API}/personal-info`);
         if (response.data.success) {
-          setPersonalInfo(response.data.data);
+          const data = response.data.data;
+          setPersonalInfo(data);
+          // Set contact info from personal info
+          setContactInfo({
+            email: data.email || "contact@example.com",
+            phone: data.phone || "+91-XXXXX-XXXXX",
+            location: data.location || "Pune, India",
+            availability: "Open to new opportunities",
+            responseTime: "Usually responds within 24 hours"
+          });
         }
       } catch (error) {
-        console.error('Error fetching personal info:', error);
+        console.error('Error fetching data:', error);
+        // Fallback contact info
+        setContactInfo({
+          email: "contact@example.com",
+          phone: "+91-XXXXX-XXXXX",
+          location: "Pune, India",
+          availability: "Open to new opportunities",
+          responseTime: "Usually responds within 24 hours"
+        });
       } finally {
         setLoading(false);
       }
     };
     
-    fetchPersonalInfo();
+    fetchData();
   }, []);
 
   const handleSubmit = async (e) => {
@@ -80,7 +89,7 @@ const Contact = () => {
     }
   };
 
-  const contactMethods = [
+  const contactMethods = contactInfo ? [
     {
       type: 'Email',
       value: contactInfo.email,
@@ -105,7 +114,19 @@ const Contact = () => {
       href: personalInfo?.socialLinks?.github || '#',
       icon: '💻'
     }
-  ];
+  ] : [];
+
+  if (loading) {
+    return (
+      <section id="contact" className="py-20">
+        <div className="container">
+          <div className="grid-container text-center">
+            <div className="title-big">LOADING CONTACT...</div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="contact" className="py-20">
@@ -163,15 +184,15 @@ const Contact = () => {
                       className="w-3 h-3 rounded-full"
                       style={{ background: 'var(--accent-primary)' }}
                     />
-                    <span className="text-body">{contactInfo.availability}</span>
+                    <span className="text-body">{contactInfo?.availability}</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-3 h-3 rounded-full" style={{ background: 'var(--border-color)' }} />
-                    <span className="text-body opacity-60">{contactInfo.responseTime}</span>
+                    <span className="text-body opacity-60">{contactInfo?.responseTime}</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-3 h-3 rounded-full" style={{ background: 'var(--border-color)' }} />
-                    <span className="text-body opacity-60">Based in {contactInfo.location}</span>
+                    <span className="text-body opacity-60">Based in {contactInfo?.location}</span>
                   </div>
                 </div>
               </div>
