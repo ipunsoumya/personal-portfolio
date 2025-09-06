@@ -28,7 +28,7 @@ const twinStyles = `
     --grid-unit: 47.6px;
   }
 
-  /* Grid Background */
+  /* Grid Background - Dark Theme */
   .grid-background {
     position: fixed;
     top: 0;
@@ -40,7 +40,7 @@ const twinStyles = `
       linear-gradient(to right, var(--text-primary) 1px, transparent 1px),
       linear-gradient(to bottom, var(--text-primary) 1px, transparent 1px);
     background-size: 47.6px 47.6px;
-    opacity: 0.1;
+    opacity: 0.05;
     pointer-events: none;
     z-index: -1;
   }
