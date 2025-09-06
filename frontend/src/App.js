@@ -244,14 +244,62 @@ const twinStyles = `
 `;
 
 function App() {
-  // Inject TWEN styles
+  // Inject TWEN styles and remove emergent badge
   React.useEffect(() => {
     const styleElement = document.createElement('style');
     styleElement.textContent = twinStyles;
     document.head.appendChild(styleElement);
     
+    // Function to remove emergent badges
+    const removeEmergentBadges = () => {
+      // Remove by ID
+      const badgeById = document.getElementById('emergent-badge');
+      if (badgeById) badgeById.remove();
+      
+      // Remove any elements containing "Made with Emergent" or "emergent" in various ways
+      const allElements = document.querySelectorAll('*');
+      allElements.forEach(el => {
+        const text = el.innerText || el.textContent || '';
+        const title = el.getAttribute('title') || '';
+        const alt = el.getAttribute('alt') || '';
+        const href = el.getAttribute('href') || '';
+        const className = el.className || '';
+        const id = el.id || '';
+        
+        if (text.toLowerCase().includes('made with emergent') ||
+            text.toLowerCase().includes('emergent') ||
+            title.toLowerCase().includes('emergent') ||
+            alt.toLowerCase().includes('emergent') ||
+            href.toLowerCase().includes('emergent') ||
+            className.toLowerCase().includes('emergent') ||
+            id.toLowerCase().includes('emergent')) {
+          el.style.display = 'none';
+          el.style.visibility = 'hidden';
+          el.style.opacity = '0';
+        }
+      });
+    };
+    
+    // Run immediately and set up observer
+    removeEmergentBadges();
+    
+    // Set up MutationObserver to catch dynamically added badges
+    const observer = new MutationObserver(() => {
+      removeEmergentBadges();
+    });
+    
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+    
+    // Also run periodically as fallback
+    const interval = setInterval(removeEmergentBadges, 1000);
+    
     return () => {
       document.head.removeChild(styleElement);
+      observer.disconnect();
+      clearInterval(interval);
     };
   }, []);
 
