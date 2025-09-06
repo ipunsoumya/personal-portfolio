@@ -85,7 +85,7 @@ const Header = () => {
           {/* CTA Button */}
           <div className="hidden md:block">
             <a
-              href={personalInfo.resumeUrl}
+              href={personalInfo?.resumeUrl || '/resume.pdf'}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-accent"
