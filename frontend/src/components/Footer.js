@@ -205,21 +205,7 @@ const Footer = () => {
             </button>
           </div>
 
-          {/* Achievement Footer Badge */}
-          <div className="text-center mt-12">
-            <div className="inline-flex items-center space-x-4 px-6 py-3" style={{
-              background: 'rgba(56, 255, 98, 0.1)',
-              border: '1px solid var(--accent-primary)'
-            }}>
-              <span className="label-small" style={{ color: 'var(--accent-primary)' }}>
-                ⚡ PROCESSING 600K+ RECORDS IN 15 MINUTES
-              </span>
-              <span className="w-1 h-4" style={{ background: 'var(--accent-primary)' }} />
-              <span className="label-small" style={{ color: 'var(--accent-primary)' }}>
-                ☁️ AWS CERTIFIED CLOUD PRACTITIONER
-              </span>
-            </div>
-          </div>
+
 
         </div>
       </div>
