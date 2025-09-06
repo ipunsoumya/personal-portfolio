@@ -130,7 +130,7 @@ const Header = () => {
                 </button>
               ))}
               <a
-                href={personalInfo.resumeUrl}
+                href={personalInfo?.resumeUrl || '/resume.pdf'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-accent mt-4"
