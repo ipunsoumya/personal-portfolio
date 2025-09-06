@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
-import { skills } from '../data/mock';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
 
 const Skills = () => {
   const [activeCategory, setActiveCategory] = useState(0);
