@@ -22,7 +22,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50" style={{ background: 'rgba(242, 242, 242, 0.95)', backdropFilter: 'blur(10px)' }}>
+    <header className="fixed top-0 left-0 right-0 z-50" style={{ background: 'rgba(15, 15, 16, 0.95)', backdropFilter: 'blur(10px)' }}>
       <div className="container">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
