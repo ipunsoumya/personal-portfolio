@@ -208,6 +208,11 @@ const twinStyles = `
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
+  /* Hide Emergent badge that gets injected */
+  #emergent-badge {
+    display: none !important;
+  }
+
   /* Mobile responsive */
   @media (max-width: 767px) {
     .grid-container {
