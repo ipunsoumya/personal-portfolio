@@ -16,9 +16,7 @@ const Hero = () => {
   const titles = [
     'Associate Solutions Engineer',
     'Java Developer',
-    'AWS Cloud Practitioner', 
-    'Streaming Applications Expert',
-    'Backend Systems Architect'
+    'AWS Cloud Practitioner'
   ];
 
   // Fetch data from API

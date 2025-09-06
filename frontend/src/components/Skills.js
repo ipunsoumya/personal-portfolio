@@ -41,10 +41,7 @@ const Skills = () => {
             </span>
           )}
         </div>
-        <div className="flex items-center space-x-4">
-          <span className="label-small">{skill.proficiency}%</span>
-          <span className="label-small">{skill.years}Y</span>
-        </div>
+        <span className="label-small">{skill.years}Y</span>
       </div>
       
       {/* Progress Bar */}
@@ -130,28 +127,19 @@ const Skills = () => {
                 </div>
 
                 {/* Category Summary */}
-                <div className="mt-8 pt-8" style={{ borderTop: '1px solid var(--border-light)' }}>
-                  <div className="grid grid-cols-3 gap-4 text-center">
-                    <div>
-                      <div className="text-regular" style={{ color: 'var(--accent-primary)' }}>
-                        {skills[activeCategory]?.items?.length || 0}
-                      </div>
-                      <div className="label-small mt-1">TECHNOLOGIES</div>
+                <div className="mt-8 pt-8 flex justify-between items-center" style={{ borderTop: '1px solid var(--border-light)' }}>
+                  <div className="text-center">
+                    <div className="text-regular" style={{ color: 'var(--accent-primary)' }}>
+                      {skills[activeCategory]?.items?.length || 0}
                     </div>
-                    <div>
-                      <div className="text-regular" style={{ color: 'var(--accent-primary)' }}>
-                        {skills[activeCategory]?.items?.length ? 
-                          Math.round(skills[activeCategory].items.reduce((acc, skill) => acc + skill.proficiency, 0) / skills[activeCategory].items.length) : 0}%
-                      </div>
-                      <div className="label-small mt-1">AVG PROFICIENCY</div>
+                    <div className="label-small mt-1">TECHNOLOGIES</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-regular" style={{ color: 'var(--accent-primary)' }}>
+                      {skills[activeCategory]?.items?.length ? 
+                        Math.round(skills[activeCategory].items.reduce((acc, skill) => acc + skill.years, 0) / skills[activeCategory].items.length * 10) / 10 : 0}
                     </div>
-                    <div>
-                      <div className="text-regular" style={{ color: 'var(--accent-primary)' }}>
-                        {skills[activeCategory]?.items?.length ? 
-                          Math.round(skills[activeCategory].items.reduce((acc, skill) => acc + skill.years, 0) / skills[activeCategory].items.length * 10) / 10 : 0}
-                      </div>
-                      <div className="label-small mt-1">AVG EXPERIENCE</div>
-                    </div>
+                    <div className="label-small mt-1">AVG EXPERIENCE</div>
                   </div>
                 </div>
               </div>

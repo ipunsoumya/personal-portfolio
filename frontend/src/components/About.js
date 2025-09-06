@@ -66,13 +66,13 @@ const About = () => {
                 <h3 className="text-regular mb-6">
                   Professional Journey
                 </h3>
-                <p className="text-body leading-relaxed mb-6">
+                <p className="text-body leading-relaxed mb-6 text-justify">
                   {aboutMe?.summary || 'Loading...'}
                 </p>
-                <p className="text-body leading-relaxed">
+                <p className="text-body leading-relaxed text-justify">
                   Currently based in {personalInfo?.location || 'India'}, I'm passionate about building 
                   scalable solutions that handle real-world complexity. My experience spans 
-                  from high-frequency trading systems to compliance platforms, always focusing 
+                  from high throughput messaging systems to compliance platforms, always focusing
                   on performance, reliability, and clean architecture.
                 </p>
               </div>
@@ -87,7 +87,7 @@ const About = () => {
                         className="w-2 h-2 mt-2 mr-3 flex-shrink-0"
                         style={{ background: 'var(--accent-primary)' }}
                       />
-                      <span className="text-body">{highlight}</span>
+                      <span className="text-body text-justify">{highlight}</span>
                     </li>
                   )) || <li>Loading achievements...</li>}
                 </ul>
