@@ -124,9 +124,9 @@ const Skills = () => {
                 
                 {/* Skills Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
-                  {skills[activeCategory].items.map((skill, index) => (
+                  {skills[activeCategory]?.items?.map((skill, index) => (
                     <SkillBar key={index} skill={skill} />
-                  ))}
+                  )) || <div>No skills found</div>}
                 </div>
 
                 {/* Category Summary */}
