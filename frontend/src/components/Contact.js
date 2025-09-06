@@ -96,13 +96,13 @@ const Contact = () => {
     {
       type: 'LinkedIn',
       value: 'Connect on LinkedIn',
-      href: personalInfo.socialLinks.linkedin,
+      href: personalInfo?.socialLinks?.linkedin || '#',
       icon: '💼'
     },
     {
       type: 'GitHub',
       value: 'View Code',
-      href: personalInfo.socialLinks.github,
+      href: personalInfo?.socialLinks?.github || '#',
       icon: '💻'
     }
   ];
