@@ -9,6 +9,9 @@ const Hero = () => {
   const [titleIndex, setTitleIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [personalInfo, setPersonalInfo] = useState(null);
+  const [aboutMe, setAboutMe] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const titles = [
     'Associate Solutions Engineer',
