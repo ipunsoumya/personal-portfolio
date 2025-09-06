@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { personalInfo, aboutMe } from '../data/mock';
+import axios from 'axios';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
 
 const Hero = () => {
   const [currentTitle, setCurrentTitle] = useState('');
