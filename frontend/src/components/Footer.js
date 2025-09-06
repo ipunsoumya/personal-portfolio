@@ -59,7 +59,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="py-20" style={{ background: 'var(--text-primary)' }}>
+    <footer className="py-20" style={{ background: 'var(--bg-primary)' }}>
       <div className="container">
         <div className="grid-container">
           
@@ -204,9 +204,6 @@ const Footer = () => {
               <span className="text-xl">↑</span>
             </button>
           </div>
-
-
-
         </div>
       </div>
     </footer>
