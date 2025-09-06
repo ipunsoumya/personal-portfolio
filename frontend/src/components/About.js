@@ -177,7 +177,7 @@ const About = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a
-                href={personalInfo.resumeUrl}
+                href={personalInfo?.resumeUrl || '/resume.pdf'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-accent"
