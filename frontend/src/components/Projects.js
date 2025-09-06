@@ -143,6 +143,18 @@ const Projects = () => {
     );
   };
 
+  if (loading) {
+    return (
+      <section id="projects" className="py-20">
+        <div className="container">
+          <div className="grid-container text-center">
+            <div className="title-big">LOADING PROJECTS...</div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="projects" className="py-20">
       <div className="container">
