@@ -7,6 +7,7 @@ phases:
       python: 3.11
     commands:
       - echo Installing dependencies...
+      - yum install -y zip unzip
       
   pre_build:
     commands:
@@ -23,19 +24,19 @@ phases:
       
   post_build:
     commands:
+      - echo "Creating deployment package..."
+      - mkdir-p deployment/{scripts, config}
+      - cp frontend/build/**/* deployment/
+      - cp backend/**/* deployment/
+      - cp scripts/**/* deployment/scripts/
+      - cp appspec.yml deployment/
+      - chmod +x deployment/scripts/*
+      - cd deployment && zip -r ../personal-portfolio.zip .
+      - cd ..
+      - echo "Deployment package created:- personal-portfolio.zip"
       - echo Post-build phase completed on `date`
 
 artifacts:
   files:
-    - frontend/build/**/*
-    - backend/**/*
-    - scripts/**/*
-    - appspec.yml
-  exclude-paths:
-    - frontend/node_modules/**/*
-    - frontend/src/**/*
-    - frontend/public/**/*
-    - backend/__pycache__/**/*
-    - '**/.git/**/*'
-    - '**/.*'
-  name: portfolio-$(date +%Y-%m-%d-%H-%M-%S)
+    - personal-portfolio.zip
+  discard-paths: yes
