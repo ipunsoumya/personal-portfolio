@@ -26,9 +26,9 @@ phases:
     commands:
       - echo "Creating deployment package..."
       - mkdir -p deployment/{scripts, config}
-      - cp frontend/build/**/* deployment/
-      - cp backend/**/* deployment/
-      - cp scripts/**/* deployment/scripts/
+      - cp frontend/build/* deployment/
+      - cp backend/* deployment/
+      - cp scripts/* deployment/scripts/
       - cp appspec.yml deployment/
       - chmod +x deployment/scripts/*
       - cd deployment && zip -r ../personal-portfolio.zip .
