@@ -24,19 +24,20 @@ phases:
       
   post_build:
     commands:
-      - echo "Creating deployment package..."
-      - mkdir -p deployment/{scripts, config}
-      - cp ../frontend/build/* deployment/
-      - cp ../backend/* deployment/
-      - cp ../scripts/* deployment/scripts/
-      - cp ../appspec.yml deployment/
-      - chmod +x deployment/scripts/*
-      - cd deployment && zip -r ../personal-portfolio.zip .
-      - cd ..
-      - echo "Deployment package created:- personal-portfolio.zip"
       - echo Post-build phase completed on `date`
 
 artifacts:
   files:
-    - personal-portfolio.zip
-  discard-paths: yes
+    - frontend/build/**/*
+    - backend/**/*
+    - scripts/**/*
+    - appspec.yml
+  exclude-paths:
+    - frontend/node_modules/**/*
+    - frontend/src/**/*
+    - frontend/public/**/*
+    - backend/__pycache__/**/*
+    - '**/.git/**/*'
+    - '**/.*'
+  name: personal-portfolio
+  type: zip
