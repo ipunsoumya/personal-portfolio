@@ -11,7 +11,7 @@ phases:
   pre_build:
     commands:
       - echo Pre-build phase started on `date`
-      - cd frontend && npm install
+      - cd frontend && npm install --force
       - cd ../backend && pip install -r requirements.txt
       
   build:
