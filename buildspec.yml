@@ -25,7 +25,7 @@ phases:
   post_build:
     commands:
       - echo "Creating deployment package..."
-      - mkdir-p deployment/{scripts, config}
+      - mkdir -p deployment/{scripts, config}
       - cp frontend/build/**/* deployment/
       - cp backend/**/* deployment/
       - cp scripts/**/* deployment/scripts/
