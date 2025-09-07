@@ -25,16 +25,16 @@ async def update_database_with_real_data():
     
     # Personal Info - Real Data
     personal_info = PersonalInfoCreate(
-        name="Your Name",  # User can update this
+        name="Soumyajeet Patra",  # User can update this
         title="Associate Solutions Engineer",
         currentCompany="Western Union",
         location="Pune, India",
-        email="your.email@example.com",  # User can update this
-        phone="+91-XXXXX-XXXXX",  # User can update this
+        email="ipunsoumya@gmail.com",  # User can update this
+        phone="+91-75084-44156",  # User can update this
         socialLinks=SocialLinks(
-            linkedin="https://linkedin.com/in/yourprofile",
-            github="https://github.com/yourusername",
-            twitter="https://twitter.com/yourusername"
+            linkedin="https://www.linkedin.com/in/soumyajeet-patra/",
+            github="https://github.com/ipunsoumya",
+            twitter="#"
         ),
         resumeUrl="/resume.pdf"
     )
@@ -43,7 +43,7 @@ async def update_database_with_real_data():
     
     # About - Real Data
     about = AboutCreate(
-        summary="Associate Solutions Engineer at Western Union specializing in high-throughput streaming applications and compliance systems. Expert in designing and developing scalable solutions capable of processing 400K-600K transaction records within 15 minutes using cutting-edge technologies like Kafka, Spark Streaming, and Apache Spark. Strong background in financial compliance, regulatory reporting systems, and end-to-end data processing workflows.",
+        summary="Dynamic Solution Engineer with 5 years of experience in leveraging advanced technologies such as Java, Scala, and Apache Spark to develop impactful financial solutions within the fintech industry. Recognized for a strong commitment to engineering innovation, combining technical expertise with strategic insights to drive effective data transformation and compliance initiatives. As an AWS Certified Cloud Practitioner, a passion for harnessing cloud technologies to enhance operational efficiency shines through. Collaborative achievements in web application development reflect a relentless pursuit of excellence and a commitment to delivering robust solutions.",
         highlights=[
             "Designed high-throughput streaming applications consuming 400K–600K transaction records within 15 minutes using Kafka consumers",
             "Integrated Spark Streaming with Kafka for near real-time transaction processing in compliance workflows",
@@ -134,7 +134,7 @@ async def update_database_with_real_data():
             technologies=["AWS EC2", "Auto Scaling", "Amazon SQS", "Amazon S3", "AWS CloudFront", "Java", "Spring Boot", "Microservices"],
             category="Cloud Architecture",
             featured=True,
-            githubUrl="https://github.com/yourusername/content-delivery-service",
+            githubUrl="https://github.com/ipunsoumya/content-delivery-service",
             liveUrl=None,
             imageUrl="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop",
             keyFeatures=[
@@ -153,7 +153,7 @@ async def update_database_with_real_data():
             technologies=["Java", "Maven", "JSON Schema", "Plugin Development", "Build Automation"],
             category="Developer Tools",
             featured=True,
-            githubUrl="https://github.com/yourusername/maven-json-validation-plugin",
+            githubUrl="https://github.com/ipunsoumya/json-validator",
             liveUrl=None,
             imageUrl="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=400&fit=crop",
             keyFeatures=[
@@ -315,20 +315,20 @@ async def update_database_with_real_data():
         CertificationCreate(
             name="AWS Certified Cloud Practitioner",
             issuer="Amazon Web Services",
-            issueDate="2023",
-            expiryDate="2026",
-            credentialId="AWS-CCP-XXXX",
+            issueDate="2022",
+            expiryDate="2025",
+            credentialId="PP34TVZLHNEE1PCJ",
             description="Foundational AWS cloud knowledge and best practices, covering core AWS services, security, architecture, pricing, and support.",
             badgeUrl="https://images.credly.com/size/340x340/images/00634f82-b07f-4bbd-a6bb-53de397fc3a6/image.png"
         ),
         CertificationCreate(
             name="AWS Certified AI Practitioner",
             issuer="Amazon Web Services",
-            issueDate="2024",
-            expiryDate="2027",
-            credentialId="AWS-AIP-XXXX",
+            issueDate="2025",
+            expiryDate="2028",
+            credentialId="149cff9c013145f4a1382ec6a321c63b",
             description="AI and machine learning services on AWS platform, covering ML fundamentals, AWS AI/ML services, and best practices for implementing AI solutions.",
-            badgeUrl="https://images.credly.com/size/340x340/images/61e07492-31c2-4912-a844-4f04f4bc88b7/image.png"
+            badgeUrl="https://images.credly.com/images/4d4693bb-530e-4bca-9327-de07f3aa2348/image.png"
         )
     ]
     
