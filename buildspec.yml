@@ -14,7 +14,6 @@ phases:
       - echo Pre-build phase started on `date`
       - cd frontend
       - echo "REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL" > .env
-      - echo "GENERATE_SOURCEMAP=$GENERATE_SOURCEMAP" >> .env
       - cat .env
       - npm install --force
       - cd ../backend
