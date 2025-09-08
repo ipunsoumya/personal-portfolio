@@ -36,7 +36,7 @@ phases:
       - echo Post-build phase completed on `date`
       - echo Creating deployment package...
       - cd $CODEBUILD_SRC_DIR
-      - zip -r personal-portfolio.zip frontend/build backend scripts appspec.yml -x "frontend/node_modules/*" "frontend/src/*" "frontend/public/*" "backend/__pycache__/*" "**/.git/*" "**/.*"
+      - zip -r personal-portfolio.zip frontend/build backend scripts appspec.yml -x "frontend/node_modules/*" "frontend/src/*" "frontend/public/*" "backend/__pycache__/*" "**/.git/*"
       - echo Deployment package created successfully
 
 artifacts:
