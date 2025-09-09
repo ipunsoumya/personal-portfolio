@@ -12,7 +12,14 @@ files:
     overwrite: yes
 hooks:
   BeforeInstall:
+    - location: scripts/cleanup.sh
+      timeout: 300
+      runas: root
     - location: scripts/stop_application.sh
+      timeout: 300
+      runas: root
+  AfterInstall:
+    - location: scripts/install_dependencies.sh
       timeout: 300
       runas: root
   ApplicationStart:
