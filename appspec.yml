@@ -3,24 +3,23 @@ os: linux
 files:
   - source: frontend/build
     destination: /var/www/portfolio/frontend
+    overwrite: true
   - source: backend
     destination: /var/www/portfolio/backend
+    overwrite: true
   - source: scripts
     destination: /var/www/portfolio/scripts
+    overwrite: true
 hooks:
   BeforeInstall:
-    - location: scripts/install_dependencies.sh
-      timeout: 300
-      runas: root
-  ApplicationStop:
-    - location: scripts/stop_server.sh
+    - location: scripts/stop_application.sh
       timeout: 300
       runas: root
   ApplicationStart:
-    - location: scripts/start_server.sh
+    - location: scripts/start_application.sh
       timeout: 300
       runas: root
-  ValidateService:
-    - location: scripts/validate_service.sh
+  ApplicationStop:
+    - location: scripts/stop_application.sh
       timeout: 300
       runas: root
