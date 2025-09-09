@@ -3,13 +3,13 @@ os: linux
 files:
   - source: frontend/build
     destination: /var/www/portfolio/frontend
-    overwrite: true
+    overwrite: yes
   - source: backend
     destination: /var/www/portfolio/backend
-    overwrite: true
+    overwrite: yes
   - source: scripts
     destination: /var/www/portfolio/scripts
-    overwrite: true
+    overwrite: yes
 hooks:
   BeforeInstall:
     - location: scripts/stop_application.sh
