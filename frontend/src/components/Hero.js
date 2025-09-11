@@ -156,7 +156,7 @@ const Hero = () => {
             </div>
 
             {/* Social Links */}
-            <div className="flex justify-center items-center space-x-6 mt-8 mb-16 relative z-10">
+            <div className="flex justify-center items-center space-x-6 mt-8 mb-8 relative z-10">
               <a 
                 href={personalInfo?.socialLinks?.linkedin} 
                 target="_blank" 
@@ -184,24 +184,6 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Scroll Indicator */}
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-0">
-            <div 
-              className="w-px h-20 relative cursor-pointer"
-              onClick={() => scrollToSection('about')}
-              style={{ background: 'var(--border-color)' }}
-            >
-              <div 
-                className="absolute w-2 h-2 left-1/2 transform -translate-x-1/2"
-                style={{ 
-                  background: 'var(--accent-primary)',
-                  animation: 'bounce 2s infinite',
-                  bottom: '0'
-                }}
-              />
-            </div>
-            <p className="label-small mt-4">SCROLL DOWN</p>
-          </div>
         </div>
       </div>
 
@@ -209,11 +191,6 @@ const Hero = () => {
         @keyframes blink {
           0%, 50% { opacity: 1; }
           51%, 100% { opacity: 0; }
-        }
-        
-        @keyframes bounce {
-          0%, 100% { transform: translateY(0) translateX(-50%); }
-          50% { transform: translateY(-10px) translateX(-50%); }
         }
       `}</style>
     </section>
