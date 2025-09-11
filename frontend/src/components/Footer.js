@@ -78,7 +78,7 @@ const Footer = () => {
             <div className="md:col-span-2">
               <div 
                 className="header-logo mb-4 cursor-pointer"
-                style={{ color: 'var(--bg-white)' }}
+                style={{ color: '#FFFFFF' }}
                 onClick={scrollToTop}
               >
                 PORTFOLIO
@@ -100,7 +100,7 @@ const Footer = () => {
 
             {/* Navigation */}
             <div>
-              <h4 className="label mb-4" style={{ color: 'var(--bg-white)' }}>
+              <h4 className="label mb-4" style={{ color: '#FFFFFF' }}>
                 NAVIGATION
               </h4>
               <nav className="space-y-3">
@@ -125,7 +125,7 @@ const Footer = () => {
 
             {/* Contact Info */}
             <div>
-              <h4 className="label mb-4" style={{ color: 'var(--bg-white)' }}>
+              <h4 className="label mb-4" style={{ color: '#FFFFFF' }}>
                 CONTACT
               </h4>
               <div className="space-y-3">
