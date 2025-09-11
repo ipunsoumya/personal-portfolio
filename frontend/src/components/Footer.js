@@ -7,14 +7,7 @@ const API = `${BACKEND_URL}/api`;
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const [personalInfo, setPersonalInfo] = useState(null);
-  
-  // Mock contact info for now (can be moved to API later)
-  const contactInfo = {
-    email: "contact@example.com",
-    phone: "+91-XXXXX-XXXXX",
-    location: "Pune, India",
-    availability: "Open to new opportunities"
-  };
+  const [contactInfo, setContactInfo] = useState(null);
 
   // Fetch personal info from API
   useEffect(() => {
@@ -22,10 +15,25 @@ const Footer = () => {
       try {
         const response = await axios.get(`${API}/personal-info`);
         if (response.data.success) {
-          setPersonalInfo(response.data.data);
+          const data = response.data.data;
+          setPersonalInfo(data);
+          // Set contact info from personal info
+          setContactInfo({
+            email: data.email || "contact@example.com",
+            phone: data.phone || "+91-XXXXX-XXXXX",
+            location: data.location || "Pune, India",
+            availability: "Open to new opportunities"
+          });
         }
       } catch (error) {
         console.error('Error fetching personal info:', error);
+        // Fallback contact info
+        setContactInfo({
+          email: "contact@example.com",
+          phone: "+91-XXXXX-XXXXX",
+          location: "Pune, India",
+          availability: "Open to new opportunities"
+        });
       }
     };
     
@@ -70,7 +78,7 @@ const Footer = () => {
             <div className="md:col-span-2">
               <div 
                 className="header-logo mb-4 cursor-pointer"
-                style={{ color: 'var(--bg-white)' }}
+                style={{ color: '#FFFFFF' }}
                 onClick={scrollToTop}
               >
                 PORTFOLIO
@@ -85,14 +93,14 @@ const Footer = () => {
                   style={{ background: 'var(--accent-primary)' }}
                 />
                 <span className="text-body" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
-                  {contactInfo.availability}
+                  {contactInfo?.availability || 'Loading...'}
                 </span>
               </div>
             </div>
 
             {/* Navigation */}
             <div>
-              <h4 className="label mb-4" style={{ color: 'var(--bg-white)' }}>
+              <h4 className="label mb-4" style={{ color: '#FFFFFF' }}>
                 NAVIGATION
               </h4>
               <nav className="space-y-3">
@@ -117,26 +125,26 @@ const Footer = () => {
 
             {/* Contact Info */}
             <div>
-              <h4 className="label mb-4" style={{ color: 'var(--bg-white)' }}>
+              <h4 className="label mb-4" style={{ color: '#FFFFFF' }}>
                 CONTACT
               </h4>
               <div className="space-y-3">
                 <a 
-                  href={`mailto:${contactInfo.email}`}
+                  href={`mailto:${contactInfo?.email || ''}`}
                   className="block text-body hover:opacity-70 transition-opacity"
                   style={{ color: 'rgba(255, 255, 255, 0.8)' }}
                 >
-                  {contactInfo.email}
+                  {contactInfo?.email || 'Loading...'}
                 </a>
                 <a 
-                  href={`tel:${contactInfo.phone}`}
+                  href={`tel:${contactInfo?.phone || ''}`}
                   className="block text-body hover:opacity-70 transition-opacity"
                   style={{ color: 'rgba(255, 255, 255, 0.8)' }}
                 >
-                  {contactInfo.phone}
+                  {contactInfo?.phone || 'Loading...'}
                 </a>
                 <span className="block text-body" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
-                  {contactInfo.location}
+                  {contactInfo?.location || 'Loading...'}
                 </span>
               </div>
             </div>

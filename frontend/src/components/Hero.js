@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import profileImage from '../assets/images/profile.jpg';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -90,22 +91,46 @@ const Hero = () => {
     <section id="hero" className="min-h-screen flex items-center justify-center relative">
       <div className="container">
         <div className="grid-container text-center">
+          {/* Profile Picture Section */}
+          <div className="flex justify-center mb-6">
+            <div className="relative">
+              <div 
+                className="w-64 h-64 rounded-full border-4 overflow-hidden relative"
+                style={{ borderColor: 'var(--accent-primary)' }}
+              >
+                <img 
+                  src={profileImage} 
+                  alt="Soumyajeet Patra" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div 
+                className="absolute top-4 right-4 w-4 h-4 rounded-full"
+                style={{ background: 'var(--accent-primary)' }}
+              />
+              <div 
+                className="absolute bottom-4 left-4 w-4 h-4 rounded-full"
+                style={{ background: 'var(--accent-primary)' }}
+              />
+            </div>
+          </div>
+
           {/* Main Hero Content */}
           <div className="space-y-8">
-            {/* Name/Title */}
-            <div>
-              <h1 className="hero-title mb-4" style={{ fontSize: 'clamp(40px, 10vw, 160px)' }}>
-                SOUMYAJEET PATRA
-              </h1>
-              <div className="text-big" style={{ minHeight: '80px' }}>
-                {currentTitle}
-                <span className="inline-block w-1 h-12 ml-2" style={{ 
-                  background: 'var(--accent-primary)', 
-                  animation: 'blink 1s infinite' 
-                }}>
-                </span>
+              {/* Name/Title */}
+              <div>
+                <h1 className="hero-title mb-4" style={{ fontSize: 'clamp(40px, 10vw, 160px)' }}>
+                  SOUMYAJEET PATRA
+                </h1>
+                <div className="text-big" style={{ minHeight: '80px' }}>
+                  {currentTitle}
+                  <span className="inline-block w-1 h-12 ml-2" style={{ 
+                    background: 'var(--accent-primary)', 
+                    animation: 'blink 1s infinite' 
+                  }}>
+                  </span>
+                </div>
               </div>
-            </div>
 
             {/* Brief Description */}
             <div className="max-w-4xl mx-auto">
@@ -131,7 +156,7 @@ const Hero = () => {
             </div>
 
             {/* Social Links */}
-            <div className="flex justify-center items-center space-x-6 mt-8 mb-16 relative z-10">
+            <div className="flex justify-center items-center space-x-6 mt-8 mb-8 relative z-10">
               <a 
                 href={personalInfo?.socialLinks?.linkedin} 
                 target="_blank" 
@@ -159,24 +184,6 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Scroll Indicator */}
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-0">
-            <div 
-              className="w-px h-20 relative cursor-pointer"
-              onClick={() => scrollToSection('about')}
-              style={{ background: 'var(--border-color)' }}
-            >
-              <div 
-                className="absolute w-2 h-2 left-1/2 transform -translate-x-1/2"
-                style={{ 
-                  background: 'var(--accent-primary)',
-                  animation: 'bounce 2s infinite',
-                  bottom: '0'
-                }}
-              />
-            </div>
-            <p className="label-small mt-4">SCROLL DOWN</p>
-          </div>
         </div>
       </div>
 
@@ -184,11 +191,6 @@ const Hero = () => {
         @keyframes blink {
           0%, 50% { opacity: 1; }
           51%, 100% { opacity: 0; }
-        }
-        
-        @keyframes bounce {
-          0%, 100% { transform: translateY(0) translateX(-50%); }
-          50% { transform: translateY(-10px) translateX(-50%); }
         }
       `}</style>
     </section>
