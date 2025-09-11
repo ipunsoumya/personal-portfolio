@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// Import project images
+const getProjectImage = (imageName) => {
+  try {
+    return require(`../assets/images/${imageName}`);
+  } catch (error) {
+    return null;
+  }
+};
+
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
@@ -39,14 +48,15 @@ const Projects = () => {
 
     return (
       <div 
-        className="fixed inset-0 z-50 flex items-center justify-center p-4"
+        className="fixed inset-0 z-50 p-4 overflow-y-auto"
         style={{ background: 'rgba(35, 35, 35, 0.8)' }}
         onClick={onClose}
       >
-        <div 
-          className="card max-w-4xl w-full max-h-[90vh] overflow-y-auto"
-          onClick={(e) => e.stopPropagation()}
-        >
+        <div className="min-h-screen flex items-center justify-center">
+          <div 
+            className="card max-w-4xl w-full my-8"
+            onClick={(e) => e.stopPropagation()}
+          >
           <div className="flex justify-between items-start mb-6">
             <div>
               <h3 className="text-regular mb-2">{project.title}</h3>
@@ -66,7 +76,7 @@ const Projects = () => {
           {/* Project Image */}
           <div className="mb-6">
             <img 
-              src={project.imageUrl} 
+              src={getProjectImage(project.imageUrl) || project.imageUrl} 
               alt={project.title}
               className="w-full h-64 object-cover"
             />
@@ -138,6 +148,7 @@ const Projects = () => {
               </a>
             )}
           </div>
+          </div>
         </div>
       </div>
     );
@@ -197,7 +208,7 @@ const Projects = () => {
                 {/* Project Image */}
                 <div className="mb-6 overflow-hidden">
                   <img 
-                    src={project.imageUrl} 
+                    src={getProjectImage(project.imageUrl) || project.imageUrl} 
                     alt={project.title}
                     className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
                   />
