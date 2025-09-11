@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import profileImage from '../assets/images/profile.jpg';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -90,22 +91,46 @@ const Hero = () => {
     <section id="hero" className="min-h-screen flex items-center justify-center relative">
       <div className="container">
         <div className="grid-container text-center">
+          {/* Profile Picture Section */}
+          <div className="flex justify-center mb-6">
+            <div className="relative">
+              <div 
+                className="w-64 h-64 rounded-full border-4 overflow-hidden relative"
+                style={{ borderColor: 'var(--accent-primary)' }}
+              >
+                <img 
+                  src={profileImage} 
+                  alt="Soumyajeet Patra" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div 
+                className="absolute top-4 right-4 w-4 h-4 rounded-full"
+                style={{ background: 'var(--accent-primary)' }}
+              />
+              <div 
+                className="absolute bottom-4 left-4 w-4 h-4 rounded-full"
+                style={{ background: 'var(--accent-primary)' }}
+              />
+            </div>
+          </div>
+
           {/* Main Hero Content */}
           <div className="space-y-8">
-            {/* Name/Title */}
-            <div>
-              <h1 className="hero-title mb-4" style={{ fontSize: 'clamp(40px, 10vw, 160px)' }}>
-                SOUMYAJEET PATRA
-              </h1>
-              <div className="text-big" style={{ minHeight: '80px' }}>
-                {currentTitle}
-                <span className="inline-block w-1 h-12 ml-2" style={{ 
-                  background: 'var(--accent-primary)', 
-                  animation: 'blink 1s infinite' 
-                }}>
-                </span>
+              {/* Name/Title */}
+              <div>
+                <h1 className="hero-title mb-4" style={{ fontSize: 'clamp(40px, 10vw, 160px)' }}>
+                  SOUMYAJEET PATRA
+                </h1>
+                <div className="text-big" style={{ minHeight: '80px' }}>
+                  {currentTitle}
+                  <span className="inline-block w-1 h-12 ml-2" style={{ 
+                    background: 'var(--accent-primary)', 
+                    animation: 'blink 1s infinite' 
+                  }}>
+                  </span>
+                </div>
               </div>
-            </div>
 
             {/* Brief Description */}
             <div className="max-w-4xl mx-auto">
