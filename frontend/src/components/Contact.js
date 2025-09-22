@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useResumeUrl } from '../hooks/useResumeUrl';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -17,6 +18,7 @@ const Contact = () => {
   const [personalInfo, setPersonalInfo] = useState(null);
   const [contactInfo, setContactInfo] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { resumeUrl } = useResumeUrl();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -202,7 +204,7 @@ const Contact = () => {
                 <h4 className="label mb-4">QUICK LINKS</h4>
                 <div className="space-y-3">
                   <a
-                    href={personalInfo?.resumeUrl || '/resume.pdf'}
+                    href={resumeUrl || '/resume.pdf'}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block text-body hover:opacity-70 transition-opacity"

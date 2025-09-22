@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useResumeUrl } from '../hooks/useResumeUrl';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -8,6 +9,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   const [personalInfo, setPersonalInfo] = useState(null);
   const [contactInfo, setContactInfo] = useState(null);
+  const { resumeUrl } = useResumeUrl();
 
   // Fetch personal info from API
   useEffect(() => {
@@ -17,7 +19,6 @@ const Footer = () => {
         if (response.data.success) {
           const data = response.data.data;
           setPersonalInfo(data);
-          // Set contact info from personal info
           setContactInfo({
             email: data.email || "contact@example.com",
             phone: data.phone || "+91-XXXXX-XXXXX",
@@ -173,7 +174,7 @@ const Footer = () => {
 
             {/* Resume Download */}
             <a
-              href={personalInfo?.resumeUrl || '/resume.pdf'}
+              href={resumeUrl || '/resume.pdf'}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-accent"

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useResumeUrl } from '../hooks/useResumeUrl';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -7,6 +8,7 @@ const API = `${BACKEND_URL}/api`;
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [personalInfo, setPersonalInfo] = useState(null);
+  const { resumeUrl } = useResumeUrl();
 
   // Fetch personal info from API
   useEffect(() => {
@@ -85,7 +87,7 @@ const Header = () => {
           {/* CTA Button */}
           <div className="hidden md:block">
             <a
-              href={personalInfo?.resumeUrl || '/resume.pdf'}
+              href={resumeUrl || '/resume.pdf'}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-accent"
@@ -130,7 +132,7 @@ const Header = () => {
                 </button>
               ))}
               <a
-                href={personalInfo?.resumeUrl || '/resume.pdf'}
+                href={resumeUrl || '/resume.pdf'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-accent mt-4"

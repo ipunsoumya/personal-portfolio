@@ -14,12 +14,14 @@ phases:
       - echo Pre-build phase started on `date`
       - cd frontend
       - echo "REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL" > .env
+      - echo "REACT_APP_RESUME_URL=$REACT_APP_RESUME_URL" >> .env
       - cat .env
       - npm install --force
       - cd ../backend
       - echo "MONGO_URL=$MONGO_URL" > .env
       - echo "DB_NAME=$DB_NAME" >> .env
       - echo "ENVIRONMENT=$ENVIRONMENT" >> .env
+      - echo "RESUME_URL=$RESUME_URL" >> .env
       - cat .env
       - pip install -r requirements.txt
       
