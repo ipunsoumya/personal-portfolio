@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useResumeUrl } from '../hooks/useResumeUrl';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -8,6 +9,7 @@ const About = () => {
   const [aboutMe, setAboutMe] = useState(null);
   const [personalInfo, setPersonalInfo] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { resumeUrl } = useResumeUrl();
 
   // Fetch data from API
   useEffect(() => {
@@ -177,7 +179,7 @@ const About = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a
-                href={personalInfo?.resumeUrl || '/resume.pdf'}
+                href={resumeUrl || '/resume.pdf'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-accent"

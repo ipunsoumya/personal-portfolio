@@ -169,6 +169,23 @@ async def submit_contact_message(message: ContactMessageCreate):
             error="Failed to send message. Please try again."
         )
 
+# Resume endpoint
+@api_router.get("/resume-url", response_model=ApiResponse)
+async def get_resume_url():
+    try:
+        resume_url = os.environ.get('RESUME_URL', 'https://drive.google.com/file/d/YOUR_FILE_ID/view')
+        return ApiResponse(
+            success=True,
+            data={"resumeUrl": resume_url},
+            message="Resume URL retrieved successfully"
+        )
+    except Exception as e:
+        logging.error(f"Error fetching resume URL: {str(e)}")
+        return ApiResponse(
+            success=False,
+            error="Failed to fetch resume URL"
+        )
+
 # Admin endpoint to view contact messages (for future use)
 @api_router.get("/admin/messages", response_model=ApiResponse)
 async def get_contact_messages():
